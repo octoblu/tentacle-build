@@ -7,7 +7,7 @@ SRC_DIR=$BASE_DIR/build/src
 echo "Clean"
 
 rm -rf $BASE_DIR/build
-mkdir -p $BUILD_DIR
+mkdir -p $SRC_DIR
 
 echo "Copy h & cpp"
 

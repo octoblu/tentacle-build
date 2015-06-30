@@ -4,13 +4,13 @@ TOOLS_DIR=$BASE_DIR/tools
 BUILD_DIR=$BASE_DIR/build
 SRC_DIR=$BASE_DIR/build/src
 
-# echo "Clean"
-#
-# rm -rf $BASE_DIR/build
-# mkdir -p $BUILD_DIR
-#
-# echo "Copy h & cpp"
-#
+echo "Clean"
+
+rm -rf $BASE_DIR/build
+mkdir -p $BUILD_DIR
+
+echo "Copy h & cpp"
+
 cp -r examples $BUILD_DIR/
 cp library.properties $BUILD_DIR/
 cp tentacle-build.h $SRC_DIR/

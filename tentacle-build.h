@@ -4,7 +4,6 @@
 class Noodle : public TentacleArduino {
   public:
     Noodle();
-
 };
 
 class FakeFoot : public Pseudopod {

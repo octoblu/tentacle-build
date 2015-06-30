@@ -11,7 +11,7 @@ mkdir -p $BUILD_DIR
 
 echo "Copy h & cpp"
 
-cp -r examples $BUILD_DIR/
+cp -r examples $SRC_DIR/
 cp library.properties $BUILD_DIR/
 cp tentacle-build.h $SRC_DIR/
 cp tentacle-build.cpp $SRC_DIR/

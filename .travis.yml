@@ -1,2 +1,12 @@
 language: shell
 install: ./arduino-build.sh
+before_deploy:
+- mv build tentacle-build
+- zip -r tentacle-build-arduino.zip tentacle-build
+deploy:
+  provider: releases
+  api_key:
+    secure: FedtEc0NAfQmzS72hhICV3Drk/9cCebcQxOf2sOAYfDpOAcEAiximJGQBwXjndQF68yamoZRB59xiJoZnd0CkP+Yw63OC8I726QUghAvxvO482Qa/ENjOahJlvIfsnBJtv1sTeGCiOwHC9zt/mmAzigci7JEymdHaeHAxf20CAnZpP8KFvQRDpUmUcy7UK4bJPPu3f69pkdW37bWr3El4cYvAvwbt4Vi3JHSXwtAF1Ev9LLZB7La43dYA7HilyixSw4Zt5Dl8HXoPKJqQM1IhVGFqR69E6+fhvHG3jJexzJUWDKuqx8atUBX73v0NU5HAfNKbeGQzX8l+2vWR1vhwPJg2htqBuTp4Pc6ySBwElaCu/LlWTF0k9+sA7YbisS7sIEbrfCC7rpdBPsgjlstCa7zh//QjWczosKocFiygGx8Qafwpm3eDB66Ar0gLER0f2cZRU75gbZ4+Bh7hN8yD3KSkE3a7f1FUKUtGrWxlr3pN7/Tu5N92HVANjTEdp96FcSwKjkAgux6MDkii3Mg3rW3BOnYbvSNSfYYa2Y7BoZvh7k6jJkKw6X9Ef3WKTSNeA5/mJ+XHvL78eanD+7ppFEosNK/di+TByxxXtnO50KAnjPp35W8MgMTCFY1O5lqNKrDAcWmofhVJS0hcCK8wTwtB19IU9ApheoKj3ya6FE=
+  file: tentacle-build-arduino.zip
+  on:
+    repo: octoblu/tentacle-build

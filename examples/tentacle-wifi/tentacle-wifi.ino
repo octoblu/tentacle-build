@@ -8,9 +8,9 @@
 //octoblu hq
 char ssid[] = "octoblu-guest";
 char password[] = "octoblu1";
-IPAddress server(172,16,42,44);
+#define server "tentacle.octoblu.com"
 /*#include "wifi-credentials.h"*/
-#define port 8111
+#define port 80
 
 static const char uuid[]  = "ff12c403-04c7-4e63-9073-2e3b1f8e4450";
 static const char token[] = "28d2c24dfa0a5289799a345e683d570880a3bc41";
@@ -18,8 +18,8 @@ static const char token[] = "28d2c24dfa0a5289799a345e683d570880a3bc41";
 int status = WL_IDLE_STATUS;
 WiFiClient conn;
 
-TentacleBuild tentacle;
-PseudopodBuild pseudopod(conn, conn, tentacle);
+Noodle tentacle;
+FakeFoot pseudopod(conn, conn, tentacle);
 
 void setup() {
   Serial.begin(9600);
@@ -38,7 +38,6 @@ void loop() {
 
   readData();
   pseudopod.sendConfiguredPins();
-  Serial.print(freeRam());
   Serial.println(F(" bytes"));
   Serial.flush();
 }

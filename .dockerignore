@@ -2,3 +2,6 @@ Dockerfile
 .git
 build
 tools
+README.md
+.gitignore
+.travis.yml

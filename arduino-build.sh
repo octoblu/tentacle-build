@@ -11,7 +11,7 @@ mkdir -p $BUILD_DIR
 
 echo "Copy h & cpp"
 
-cp -r examples $SRC_DIR/
+cp -r examples $BUILD_DIR/
 cp library.properties $BUILD_DIR/
 cp tentacle-build.h $SRC_DIR/
 cp tentacle-build.cpp $SRC_DIR/
@@ -19,8 +19,6 @@ cp tentacle-build.cpp $SRC_DIR/
 echo "Installing tools"
 
 rm -rf $TOOLS_DIR
-mkdir $TOOLS_DIR
-
 mkdir -p $TOOLS_DIR/nanopb
 curl -sL http://koti.kapsi.fi/~jpa/nanopb/download/nanopb-0.3.3-linux-x86.tar.gz | tar xz -C $TOOLS_DIR/nanopb --strip-components 1
 

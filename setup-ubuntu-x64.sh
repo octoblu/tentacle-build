@@ -2,7 +2,7 @@
 
 # "echo 'foreign-architecture i386' > /etc/dpkg/dpkg.cfg.d/multiarch"
 apt-get update
-apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386 curl
+apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386 curl zip
 
 BASE_DIR=`pwd`
 TOOLS_DIR=$BASE_DIR/tools

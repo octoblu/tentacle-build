@@ -11,3 +11,8 @@ RUN ./setup-ubuntu-x64.sh && \
 
 COPY . /tentacle-build
 RUN ./arduino-build.sh
+
+RUN mv build tentacle-build
+RUN zip -r tentacle-build-arduino.zip tentacle-build
+
+VOLUME /tentacle-zip

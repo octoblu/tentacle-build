@@ -1,22 +1,23 @@
 #include <SPI.h>
-#include <WiFi.h>
+#include <Ethernet.h>
 
 #include "tentacle-build.h"
 
 #define DELAY 2000
 
-//octoblu hq
-char ssid[] = "octoblu-guest";
-char password[] = "octoblu1";
+// Enter a MAC address for your controller below.
+// Newer Ethernet shields have a MAC address printed on a sticker on the shield
+byte mac[] = {
+  0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x02
+};
+
 #define server "tentacle.octoblu.com"
-/*#include "wifi-credentials.h"*/
 #define port 80
 
 static const char uuid[]  = "ff12c403-04c7-4e63-9073-2e3b1f8e4450";
 static const char token[] = "28d2c24dfa0a5289799a345e683d570880a3bc41";
 
-int status = WL_IDLE_STATUS;
-WiFiClient conn;
+EthernetClient conn;
 
 TentacleArduino tentacle;
 Pseudopod pseudopod(conn, conn, tentacle);
@@ -25,7 +26,7 @@ void setup() {
   Serial.begin(9600);
   Serial.println(F("The Day of the Tentacle has begun!"));
 
-  setupWifi();
+  setupEthernet();
   connectToServer();
   delay(DELAY);
 }
@@ -81,22 +82,14 @@ void connectToServer() {
 
 }
 
-void setupWifi() {
-  int status = WL_IDLE_STATUS;
-
-  while (status != WL_CONNECTED) {
-    Serial.print(F("Attempting to connect to SSID: "));
-    Serial.println(ssid);
+void setupEthernet() {
+  while (Ethernet.begin(mac) == 0) {
+    Serial.print(F("DHCP failed. Trying again."));
     Serial.flush();
-    status = WiFi.begin(ssid, password);
   }
 
-  // print the SSID of the network you're attached to:
-  Serial.print(F("SSID: "));
-  Serial.println(WiFi.SSID());
-
-  // print your WiFi shield's IP address:
-  IPAddress ip = WiFi.localIP();
+  // print your Ethernet shield's IP address:
+  IPAddress ip = Ethernet.localIP();
   Serial.print(F("IP Address: "));
   Serial.println(ip);
 

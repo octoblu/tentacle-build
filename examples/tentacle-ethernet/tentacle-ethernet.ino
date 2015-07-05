@@ -28,7 +28,6 @@ void setup() {
 
   setupEthernet();
   connectToServer();
-  delay(DELAY);
 }
 
 void loop() {
@@ -38,23 +37,25 @@ void loop() {
   }
 
   readData();
-  pseudopod.sendConfiguredPins();
+
+  if(pseudopod.shouldBroadcastPins() ) {
+    delay(pseudopod.getBroadcastInterval());
+    Serial.println(F("Sending pins"));
+    pseudopod.sendConfiguredPins();
+  }
 }
 
 void readData() {
-  delay(DELAY);
 
   while (conn.available()) {
     Serial.println(F("Received message"));
     Serial.flush();
 
     if(pseudopod.readMessage() == TentacleMessageTopic_action) {
-      delay(DELAY);
       pseudopod.sendPins();
     }
   }
 
-  delay(DELAY);
 }
 
 void connectToServer() {
@@ -72,7 +73,6 @@ void connectToServer() {
     Serial.println(F("Can't connect to the server."));
     Serial.flush();
     conn.stop();
-    delay(DELAY);
     connectionAttempts++;
   }
 

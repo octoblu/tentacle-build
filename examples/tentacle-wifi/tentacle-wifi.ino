@@ -1,9 +1,8 @@
 #include <SPI.h>
 #include <WiFi.h>
+#define MIN_DELAY 2000
 
 #include "tentacle-build.h"
-
-#define DELAY 2000
 
 //octoblu hq
 char ssid[] = "octoblu-guest";
@@ -21,13 +20,31 @@ WiFiClient conn;
 TentacleArduino tentacle;
 Pseudopod pseudopod(conn, conn, tentacle);
 
+void delayIfNeeded() {
+#ifdef MIN_DELAY
+delay(MIN_DELAY);
+#endif
+}
+
+void delayTheAppropriateTime() {
+  #ifdef MIN_DELAY
+  if(pseudopod.getBroadcastInterval() < MIN_DELAY) {
+    delay(MIN_DELAY);
+  } else {
+    delay(pseudopod.getBroadcastInterval());
+  }
+  #else
+  delay(pseudopod.getBroadcastInterval());
+  #endif
+}
+
 void setup() {
   Serial.begin(9600);
   Serial.println(F("The Day of the Tentacle has begun!"));
 
   setupWifi();
   connectToServer();
-  delay(DELAY);
+  delayIfNeeded();
 }
 
 void loop() {
@@ -37,23 +54,27 @@ void loop() {
   }
 
   readData();
-  pseudopod.sendConfiguredPins();
+  if(pseudopod.shouldBroadcastPins() ) {
+    delayTheAppropriateTime();
+    Serial.println(F("Sending pins"));
+    pseudopod.sendConfiguredPins();
+  }
 }
 
 void readData() {
-  delay(DELAY);
+  delayIfNeeded();
 
   while (conn.available()) {
     Serial.println(F("Received message"));
     Serial.flush();
 
     if(pseudopod.readMessage() == TentacleMessageTopic_action) {
-      delay(DELAY);
+      delayIfNeeded();
       pseudopod.sendPins();
     }
   }
 
-  delay(DELAY);
+  delayIfNeeded();
 }
 
 void connectToServer() {
@@ -71,7 +92,7 @@ void connectToServer() {
     Serial.println(F("Can't connect to the server."));
     Serial.flush();
     conn.stop();
-    delay(DELAY);
+    delayIfNeeded();
     connectionAttempts++;
   }
 

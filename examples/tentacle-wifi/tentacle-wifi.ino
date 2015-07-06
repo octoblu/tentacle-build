@@ -1,15 +1,19 @@
 #include <SPI.h>
 #include <WiFi.h>
-#define MIN_DELAY 2000
+
+//Warning: If you are using the official Arduino wifi shield, not defining this variable may produce corrupted data.
+//Defining it, however, slows things down quite a bit.
+
+//#define MIN_DELAY 2000
 
 #include "tentacle-build.h"
 
 //octoblu hq
 char ssid[] = "octoblu-guest";
 char password[] = "octoblu1";
-#define server "tentacle.octoblu.com"
+IPAddress server(172,16,42,21);
 /*#include "wifi-credentials.h"*/
-#define port 80
+#define port 8111
 
 static const char uuid[]  = "ff12c403-04c7-4e63-9073-2e3b1f8e4450";
 static const char token[] = "28d2c24dfa0a5289799a345e683d570880a3bc41";

@@ -1,7 +1,7 @@
 sudo: true
 language: shell
 before_install: sudo ./setup-ubuntu-x64.sh
-install: ./arduino-build.sh
+install: ./build.sh
 before_deploy:
 - mv build tentacle-build
 - zip -r tentacle-build-arduino.zip tentacle-build/arduino

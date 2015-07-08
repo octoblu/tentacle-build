@@ -30,3 +30,4 @@ mkdir -p $DOWNLOAD_DIR/tentacle-protocol-buffer
 curl -sL https://github.com/octoblu/tentacle-protocol-buffer/archive/master.tar.gz | tar xz -C $DOWNLOAD_DIR/tentacle-protocol-buffer --strip-components 1
 
 ./build-arduino.sh
+./build-particle.sh

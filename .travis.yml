@@ -4,7 +4,7 @@ before_install: sudo ./setup-ubuntu-x64.sh
 install: ./arduino-build.sh
 before_deploy:
 - mv build tentacle-build
-- zip -r tentacle-build-arduino.zip tentacle-build
+- zip -r tentacle-build-arduino.zip tentacle-build/arduino
 deploy:
   provider: releases
   api_key:

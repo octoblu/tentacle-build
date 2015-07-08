@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 BASE_DIR=`pwd`
 DOWNLOAD_DIR=$BASE_DIR/downloads
 TOOLS_DIR=$BASE_DIR/tools

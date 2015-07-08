@@ -15,11 +15,11 @@ mkdir -p $SRC_DIR
 
 echo "copying main headers"
 cp $PLATFORM/library.properties $BUILD_DIR/
-cp tentacle-build.h $SRC_DIR/
-cp tentacle-build.cpp $SRC_DIR/
+cp $PLATFORM/tentacle-build.h $SRC_DIR/
+cp $PLATFORM/tentacle-build.cpp $SRC_DIR/
 
 echo "copying examples"
-cp -r $BASE_DIR/examples/$PLATFORM $BUILD_DIR/examples
+cp -r $PLATFORM/examples $BUILD_DIR/examples
 
 echo "copying projects"
 cp -r $DOWNLOAD_DIR/* $SRC_DIR

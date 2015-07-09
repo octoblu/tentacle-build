@@ -3,8 +3,8 @@ language: shell
 before_install: sudo ./setup-ubuntu-x64.sh
 install: ./build.sh
 before_deploy:
-  - mv build tentacle-build
-  - zip -r tentacle-build-arduino.zip tentacle-build/arduino
+  - mv build/arduino tentacle-build
+  - zip -r tentacle-build-arduino.zip tentacle-build
 deploy:
   - provider: releases
     api_key:

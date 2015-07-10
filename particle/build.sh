@@ -47,11 +47,18 @@ cd $BASE_DIR
 echo "copying examples"
 cp -r $PLATFORM/examples $DEPLOY_SRC_DIR/examples
 
-cd $SRC_DIR
-find . -iname '*.c' -exec cp {} $DEPLOY_SRC_DIR/{}pp \; 2> /dev/null
-find . -iname '*.h' -exec cp {} $DEPLOY_SRC_DIR \; 2> /dev/null
-find . -iname '*.cpp' -exec cp {} $DEPLOY_SRC_DIR \; 2> /dev/null
-find . -iname '*.hpp'-exec cp {} $DEPLOY_SRC_DIR \; 2> /dev/null
+(
+  cd $SRC_DIR
+  for g in '*.c' '*.h' '*.cpp'; do
+    for f in $(find . -iname ${g}); do
+      cp $f $DEPLOY_SRC_DIR
+    done
+  done
+  cd $DEPLOY_SRC_DIR
+  for f in *.c; do
+    mv $f ${f}pp
+  done
+);
 
 sed -ine 's/<pb.h>/"pb.h"/' $DEPLOY_SRC_DIR/tentacle-message.pb.h
 

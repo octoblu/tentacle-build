@@ -102,7 +102,7 @@ void loop() {
 
   if(!pseudopod.isConfigured()) {
     Serial.println(F("I'm not configured. Requesting configuration."));
-    delay(100);
+    delay(300);
     pseudopod.requestConfiguration();
   }
 
@@ -112,6 +112,8 @@ void loop() {
     Serial.print(configSize);
     Serial.print(F(" bytes written while broadcasting pins"));
   }
+
+  Spark.process();
 }
 
 void readData() {

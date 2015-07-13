@@ -98,7 +98,6 @@ void loop() {
   }
 
   Serial.flush();
-  delay(2000);
   readData();
 
   if(!pseudopod.isConfigured()) {
@@ -125,7 +124,6 @@ void readData() {
       pseudopod.sendPins();
     }
   }
-
 }
 
 void connectToServer() {

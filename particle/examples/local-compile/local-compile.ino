@@ -19,15 +19,11 @@ Pseudopod pseudopod(conn, conn, tentacle);
 void setup() {
   Serial.begin(9600);
   Serial.println(F("The Day of the Tentacle has begun!"));
-  waitForWifi();
+  debugPhoton();
   connectToServer();
 }
 
 void loop() {
-  if(!WiFi.ready()) {
-      Serial.println(F("WiFi wasn't ready. waiting."));
-  }
-
   if (!conn.connected()) {
     conn.stop();
     connectToServer();
@@ -38,8 +34,6 @@ void loop() {
   readData();
 
   if(pseudopod.shouldBroadcastPins() ) {
-    Serial.println("I should broadcast my pins. But I'm gonna wait.");
-    delay(2000);
     delay(pseudopod.getBroadcastInterval());
     size_t configSize = pseudopod.sendConfiguredPins();
     Serial.print(configSize);
@@ -60,16 +54,7 @@ void readData() {
 
 }
 
-void waitForWifi() {
-    while(!WiFi.ready()) {
-        Serial.println(F("Waiting for wifi"));
-        delay(200);
-    }
-    delay(5000);
-}
-
 void connectToServer() {
-  int connectionAttempts = 0;
   Serial.println(F("Connecting to the server."));
   Serial.flush();
 
@@ -77,12 +62,44 @@ void connectToServer() {
     Serial.println(F("Can't connect to the server."));
     Serial.flush();
     conn.stop();
-    connectionAttempts++;
+    delay(500);
   }
-  Serial.println(F("Now I'm waiting a second. to be sure"));
-  delay(3000);
+
   size_t authSize = pseudopod.authenticate(uuid, token);
   Serial.print(authSize);
   Serial.println(F(" bytes written for authentication"));
+}
 
+void debugPhoton() {
+  Serial.println(F("Waiting for slow humans."));
+  delay(2000);
+
+  Serial.println(F("\n\nDebugging PHOTON"));
+
+  Serial.print(F("\nWiFi Ready:\t"));
+  Serial.println(WiFi.ready());
+
+  if (WiFi.ready()) {
+      Serial.println(F("WiFI:\t\t\t ready"));
+  } else {
+    Serial.println(F("WiFI:\t\t\t NOT ready"));
+  }
+
+  if (Spark.connected()) {
+      Serial.println(F("Spark Cloud:\t\t\t connected"));
+  } else {
+    Serial.println(F("Spark Cloud:\t\t\t NOT Connected"));
+  }
+
+  Serial.println(F("\nPinging google"));
+  Serial.println(WiFi.ping(IPAddress(74,125,239,34)));
+
+  Serial.println(F("Pinging Tentacle"));
+  Serial.println(WiFi.ping(IPAddress(54,186,61,91)));
+
+  Serial.println(WiFi.localIP());
+  Serial.println(WiFi.subnetMask());
+  Serial.println(WiFi.gatewayIP());
+  Serial.println(WiFi.SSID());
+  
 }

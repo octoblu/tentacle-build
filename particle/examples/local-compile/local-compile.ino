@@ -112,7 +112,7 @@ void loop() {
     Serial.print(configSize);
     Serial.print(F(" bytes written while broadcasting pins"));
   }
-
+  
   Spark.process();
 }
 
@@ -129,6 +129,8 @@ void readData() {
 }
 
 void connectToServer() {
+  hasAuthenticated = false;
+
   Serial.println(F("Connecting to the server."));
   Serial.flush();
 
@@ -143,6 +145,7 @@ void connectToServer() {
 }
 
 void connectToLocalServer() {
+  hasAuthenticated = false;
   Serial.println(F("Connecting to local server."));
   Serial.flush();
 

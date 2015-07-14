@@ -18,6 +18,7 @@ Pseudopod pseudopod(conn, conn, tentacle);
 void setup() {
   Serial.begin(9600);
   Serial.println(F("The Day of the Tentacle has begun!"));
+  Bridge.begin();
   connectToServer();
 }
 

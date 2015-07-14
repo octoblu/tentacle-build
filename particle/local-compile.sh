@@ -6,7 +6,7 @@ BASE_DIR=`pwd`
 BUILD_DIR=$BASE_DIR/build/$PLATFORM
 LIB_DIR=$BASE_DIR/deploy/$PLATFORM/firmware
 BIN_DIR=$BUILD_DIR/bin
-SRC_FILE=$BASE_DIR/$PLATFORM/examples/local-compile/local-compile.ino
+SRC_FILE=$BASE_DIR/$PLATFORM/examples/tentacle-particle/tentacle-particle.ino
 
 echo "Compiling locally for testing.\n\n"
 rm -rf $BIN_DIR

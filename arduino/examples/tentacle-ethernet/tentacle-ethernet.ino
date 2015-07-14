@@ -14,8 +14,8 @@ byte mac[] = {
 #define server "tentacle.octoblu.com"
 #define port 80
 
-static const char uuid[]  = "ff12c403-04c7-4e63-9073-2e3b1f8e4450";
-static const char token[] = "28d2c24dfa0a5289799a345e683d570880a3bc41";
+static const char uuid[]  = "INSERT UUID HERE";
+static const char token[] = "INSERT TOKEN HERE";
 
 EthernetClient conn;
 

@@ -5,6 +5,7 @@
 
 #define DELAY 2000
 
+//Checkout http://tentacle.readme.io for setup and usage instructions
 // Enter a MAC address for your controller below.
 // Newer Ethernet shields have a MAC address printed on a sticker on the shield
 byte mac[] = {

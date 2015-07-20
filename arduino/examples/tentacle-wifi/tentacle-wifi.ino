@@ -1,6 +1,7 @@
 #include <SPI.h>
 #include <WiFi.h>
 
+//Checkout http://tentacle.readme.io for setup and usage instructions
 //Warning: If you are using the official Arduino wifi shield, not defining this variable may produce corrupted data.
 //Defining it, however, slows things down quite a bit.
 #define MIN_DELAY 2000

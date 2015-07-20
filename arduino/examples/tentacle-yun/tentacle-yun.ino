@@ -3,6 +3,7 @@
 
 #include "tentacle-build.h"
 
+//Checkout http://tentacle.readme.io for setup and usage instructions
 
 #define server "tentacle.octoblu.com"
 #define port 80

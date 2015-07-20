@@ -1,7 +1,7 @@
 #include <SPI.h>
 
 #include "tentacle-build.h"
-
+//Checkout http://tentacle.readme.io for setup and usage instructions
 #define conn Serial
 
 TentacleArduino tentacle;

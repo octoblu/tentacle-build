@@ -6,7 +6,7 @@
 //Checkout http://tentacle.readme.io for setup and usage instructions
 
 #define server "tentacle.octoblu.com"
-#define port 80
+#define port 1528
 
 static const char uuid[]  = "INSERT UUID HERE";
 static const char token[] = "INSERT TOKEN HERE";

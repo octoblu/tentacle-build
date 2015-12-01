@@ -13,7 +13,7 @@ char ssid[] = "INSERT WIFI NAME HERE";
 char password[] = "INSERT WIFI PASSWORD HERE";
 #define server "tentacle.octoblu.com"
 /*#include "wifi-credentials.h"*/
-#define port 80
+#define port 1528
 
 static const char uuid[]  = "INSERT UUID HERE";
 static const char token[] = "INSERT TOKEN HERE";
